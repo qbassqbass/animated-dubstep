@@ -98,6 +98,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener, Mou
             this.putClientProperty("NOHIT", null);
         }
         if(this.getClientProperty("HITOP") != null){
+            System.out.println("HITOP "+(MyPoint)this.getClientProperty("HITOP"));
             this.points.add((MyPoint)this.getClientProperty("HITOP"));
             this.putClientProperty("HITOP", null);
         }

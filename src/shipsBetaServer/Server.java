@@ -104,10 +104,10 @@ public class Server implements Runnable{
             if(ServerFrame.getBoard(opponentId).contains(shot)){
                 System.err.println("Player:"+playerId+" hit "+opponentId+" at "+shot);
                 this.oout.writeObject(new Message(2, this.playerId, "HIT", shot));
-                ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, this.playerId, "HIT", shot));
+                ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, opponentId, "HIT", shot));
             }else{
                 this.oout.writeObject(new Message(2, this.playerId, "NOHIT", shot));
-                ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, this.playerId, "NOHIT", shot));
+                ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, opponentId, "NOHIT", shot));
             }
             if(ServerFrame.getWhoHasToken() == playerId) ServerFrame.setWhoHasToken(opponentId);
             else ServerFrame.setWhoHasToken(playerId);
