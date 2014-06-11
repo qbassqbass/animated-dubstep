@@ -103,8 +103,15 @@ public class Server implements Runnable{
             if(playerId == 0) opponentId = 1; else opponentId = 0;
             if(ServerFrame.getBoard(opponentId).contains(shot)){
                 System.err.println("Player:"+playerId+" hit "+opponentId+" at "+shot);
+                ServerFrame.getBoard(opponentId).remove(shot);
                 this.oout.writeObject(new Message(2, this.playerId, "HIT", shot));
                 ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, opponentId, "HIT", shot));
+                int size = ServerFrame.getBoard(opponentId).size();
+                System.out.println("Player "+opponentId+" has "+size+" ship points");
+                if(size == 0){
+                    ServerFrame.getServers().get(playerId).commOut.writeObject(new Message(6, playerId, "YOUWIN"));
+                    ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(6, opponentId, "YOULOSE"));
+                }
             }else{
                 this.oout.writeObject(new Message(2, this.playerId, "NOHIT", shot));
                 ServerFrame.getServers().get(opponentId).commOut.writeObject(new Message(2, opponentId, "NOHIT", shot));

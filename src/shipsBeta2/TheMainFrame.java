@@ -415,26 +415,37 @@ public class TheMainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lShipDestroyerMouseExited
 
-    class MessThread implements Runnable{
+    class MessThread implements Runnable{ // Jaaaaa -.-
         
         private void checkMessage(Message mess){
             System.out.println("Checking Message");
             System.out.println(mess);
-            if(message.getType() == 2){
-                MyPoint p = (MyPoint)message.getObj();
-                if(message.getMessage().equals("HIT")){  
+            if(mess.getType() == 2){
+                MyPoint p = (MyPoint)mess.getObj();
+                if(mess.getMessage().equals("HIT")){  
                     p.setCol(Color.red);                          
                     pGame2.putClientProperty("HITOP", p);
-                }else if(message.getMessage().equals("NOHIT")){
+                }else if(mess.getMessage().equals("NOHIT")){
                     p.setCol(Color.gray);
                     pGame2.putClientProperty("NOHITOP", p);
                 }else{
-                    System.err.println("message not known:"+message.getMessage());
+                    System.err.println("message not known:"+mess.getMessage());
                 }
                 pGame2.repaint();
-            }else if(message.getType() == 0){
-                System.out.println("TOKEN "+message.getMessage());
-                if(message.getMessage().equals("TOKEN")) lInfo.setText("You have token now");
+            }else if(mess.getType() == 0){
+                System.out.println("TOKEN "+mess.getMessage());
+                if(mess.getMessage().equals("TOKEN")) lInfo.setText("You have token now");
+            }else if(mess.getType() == 6){
+                System.out.println("WIN "+mess.getMessage());
+                if(mess.getMessage().equals("YOUWIN")){ 
+                    lInfo.setText("Game ended - you win!");
+                    lGameMode.setText("YOU WIN!!");
+                }
+                if(mess.getMessage().equals("YOULOSE")){
+                    lInfo.setText("Game ended - you lose...");
+                    lGameMode.setText("YOU LOSE!!");
+                }
+                battlemode = false;
             }
         }
 
