@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import shipsBeta2.MyPoint;
 
 /**
- *
+ * Klasa okienka serwera. Obsługuje połączenia klienckie
  * @author Jakub
  */
 public class ServerFrame extends javax.swing.JFrame {
@@ -31,11 +31,17 @@ public class ServerFrame extends javax.swing.JFrame {
     public static void incHowManyPlayers(){
         howManyPlayers++;
     }
-    
+    /**
+     * Klasa pomocnicza obsługująca plansze konkretnych graczy
+     */
     private static class Board{
         private int id;
         private ArrayList<MyPoint> points;
-        
+        /**
+         * Konstruktor planszy dla konkretnego gracza
+         * @param id identyfikator gracza
+         * @param pts punkty statków ustawione przez gracza
+         */
         public Board(int id, ArrayList<MyPoint> pts){
             this.id = id;
             this.points = pts;
@@ -97,7 +103,11 @@ public class ServerFrame extends javax.swing.JFrame {
         return servers;
     }
     private boolean stop = false;
-    
+    /**
+     * Metoda odpowiedzialna za uruchomienie serwera
+     * @param addr adres IP serwera do nasłuchu
+     * @param port port serwera do nasłuchu
+     */
     private void runServer(String addr, int port){
         System.out.println("DEBUG|Addr:"+addr+"|Port:"+port);
         this.tLogOutput.append("DEBUG|Addr:"+addr+"|Port:"+port+"\n");

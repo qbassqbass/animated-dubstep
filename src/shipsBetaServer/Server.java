@@ -16,7 +16,7 @@ import message.*;
 import shipsBeta2.MyPoint;
 
 /**
- *
+ * Klasa wątka serwera dla konkretnego klienta
  * @author Jakub
  */
 public class Server implements Runnable{
@@ -38,6 +38,13 @@ public class Server implements Runnable{
     private String threadName;
     private Message message;
     private final int playerId;
+    
+    /**
+     * Konstruktor wątku serwera dla kontretnego klienta
+     * @param sock gniazdo połączenia gry z klientem
+     * @param commSock gniazdo połączenia komunikacyjnego z klientem
+     * @param id identyfikator gracza
+     */
     
     public Server(Socket sock, Socket commSock, int id){
         this.commSockfd = commSock;
@@ -79,6 +86,11 @@ public class Server implements Runnable{
             
         }
     }
+    /**
+     * Metoda sprawdzająca przesłaną wiadomość od Klienta
+     * @param mess Obiekt otrzymanej wiadomości
+     * @throws IOException 
+     */
 
     private void checkMessage(Message mess) throws IOException{
         if(mess.getMessage().equals("IDREQ")){
