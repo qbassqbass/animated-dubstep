@@ -94,6 +94,8 @@ public class Server implements Runnable{
 //                } 
             }
            this.oout.writeObject(new Message(0, this.playerId, "OK"));
+           ServerFrame.incHowManyPlayers();
+           if(ServerFrame.getHowManyPlayers() == 2) ServerFrame.setWhoHasToken(0);
         }
         else if(mess.getMessage().equals("SHOT")){
             MyPoint shot = (MyPoint)mess.getObj();

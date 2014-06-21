@@ -416,7 +416,10 @@ public class TheMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lShipDestroyerMouseExited
 
     class MessThread implements Runnable{ // Jaaaaa -.-
-        
+        /**
+         * Metoda sprawdzająca czy jest dostępna nowa wiadomość na kanale komunikacyjnym
+         * @param mess klasa wiadomości Message
+         */
         private void checkMessage(Message mess){
             System.out.println("Checking Message");
             System.out.println(mess);

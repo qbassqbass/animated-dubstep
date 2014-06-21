@@ -22,6 +22,16 @@ import shipsBeta2.MyPoint;
  */
 public class ServerFrame extends javax.swing.JFrame {
     
+    private static int howManyPlayers = 0;
+    
+    public static int getHowManyPlayers(){
+        return howManyPlayers;
+    }
+    
+    public static void incHowManyPlayers(){
+        howManyPlayers++;
+    }
+    
     private static class Board{
         private int id;
         private ArrayList<MyPoint> points;
@@ -58,7 +68,7 @@ public class ServerFrame extends javax.swing.JFrame {
     public ServerFrame() {
         initComponents();
     }
-    private static int whoHasToken;
+    private static int whoHasToken = -1;
 
     public static int getWhoHasToken() {
         return whoHasToken;
